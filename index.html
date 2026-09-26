@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="Quran Digital, ruang belajar Al-Qur'an dan murajaah untuk siswa.">
+  <title>Quran Digital | Belajar dan Murajaah</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+      <header class="welcome-topbar">
+        <a class="brand" href="#awal" aria-label="Quran Digital, beranda">
+          <span class="brand-mark" aria-hidden="true"><span class="book-mark"><span></span><span></span></span></span>
+          <span class="brand-copy"><strong>Quran</strong><span>Digital</span></span>
+        </a>
+        <select class="language-select" data-language-select aria-label="Bahasa antarmuka" data-i18n-aria="language.label">
+          <option value="id">Indonesia</option>
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Aktifkan tema gelap">
+          <span>Tema</span><span class="theme-name" data-theme-name>Terang</span><span class="theme-switch" aria-hidden="true"><span></span></span>
+        </button>
+      </header>
+      <main class="welcome-main">
+        <div class="welcome-copy">
+          <p class="eyebrow" data-i18n="home.kicker">RUANG BELAJAR QURAN DIGITAL</p>
+          <h1 id="welcome-title"><span data-i18n="home.headlineStart">Dekat dengan</span><br><em data-i18n="home.headlineQuran">Al-Qur’an</em><span data-i18n="home.headlineEnd">, setiap hari.</span></h1>
+          <p class="welcome-note" data-i18n="home.note">Baca ayat, buka tafsir, dan luangkan waktu untuk refleksi.</p>
+          <div class="welcome-actions">
+            <button class="button button-primary welcome-primary" type="button" data-enter-view="quran" data-i18n="home.start">Start Learning <span aria-hidden="true">→</span></button>
+            <button class="welcome-secondary" type="button" data-enter-view="mentor" data-i18n="home.mentor">Latihan murajaah <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="welcome-footnote"><span class="status-dot"></span><span><span id="home-surah-count">114</span> <span data-i18n="home.surahCount">surat · belajar sesuai ritmemu</span></span></div>
+        </div>
+        <aside class="welcome-art" aria-label="Pilihan ruang belajar" data-i18n-aria="home.spaces">
+          <div class="art-topline"><span data-i18n="home.brand">QURAN DIGITAL</span><span data-i18n="home.spaces">RUANG BELAJAR</span></div>
+          <div class="art-emblem" aria-hidden="true"><span class="book-mark book-mark-large"><span></span><span></span></span></div>
+          <p class="art-caption"><span data-i18n="home.read">BACA</span> · <span data-i18n="home.reflect">REFLEKSI</span> · <span data-i18n="home.listen">DENGARKAN</span></p>
+          <button class="welcome-module" type="button" data-enter-view="quran"><span class="module-index">01</span><span><strong data-i18n="nav.quran">Al-Qur’an</strong><small data-i18n="home.readVerses">Baca ayat dan terjemahan</small></span><span class="module-arrow" aria-hidden="true">↗</span></button>
+          <button class="welcome-module" type="button" data-enter-view="mentor"><span class="module-index">02</span><span><strong data-i18n="nav.mentor">Mentor Murajaah</strong><small data-i18n="home.practice">Latihan hafalan ayat</small></span><span class="module-arrow" aria-hidden="true">↗</span></button>
+          <button class="welcome-module" type="button" data-enter-view="radio"><span class="module-index">03</span><span><strong data-i18n="nav.radio">Quran Radio</strong><small data-i18n="home.listenVerses">Dengarkan lantunan surat</small></span><span class="module-arrow" aria-hidden="true">↗</span></button>
+        </aside>
+      </main>
+      <section class="home-explore" aria-label="Jelajahi Quran Digital">
+        <div class="learning-section">
+          <div class="home-section-heading">
+            <div><p class="eyebrow" data-i18n="home.readReflect">BACA &amp; REFLEKSI</p><h2 data-i18n="home.verseActions">Tafsir, lesson, dan reflection di setiap ayat.</h2></div>
+          </div>
+          <div class="home-learning-card">
+            <span class="learning-mark" aria-hidden="true">↗</span>
+            <p data-i18n="home.reflectionIntro">Pilih ayat untuk membuka tafsir dari API, membaca lesson, atau menulis reflection pribadi.</p>
+            <button class="daily-link" type="button" data-enter-view="quran" data-i18n="home.openQuran">Buka Al-Qur’an <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="home-side-features">
+          <article class="daily-verse-card">
+            <div class="feature-card-heading"><p class="eyebrow" data-i18n="home.verseOfDay">AYAT HARI INI</p><span class="daily-date" id="daily-date"></span></div>
+            <p class="daily-reference" id="daily-reference">Memuat surat…</p>
+            <p class="daily-arabic" id="daily-arabic" lang="ar" dir="rtl"></p>
+            <p class="daily-translation" id="daily-translation"></p>
+            <p class="translation-source" data-i18n="verse.translationSource"></p>
+            <p class="daily-status" id="daily-status" role="status"></p>
+            <button class="daily-link" id="daily-open" type="button" data-enter-view="quran" data-i18n="home.openDaily">Baca ayat hari ini <span aria-hidden="true">→</span></button>
+          </article>
+          <button class="radio-promo" type="button" data-enter-view="radio">
+            <span class="radio-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="radio-promo-copy"><strong data-i18n="nav.radio">Quran Radio</strong><small data-i18n="home.radioHint">Putar murattal surat pilihanmu</small></span>
+            <span class="radio-promo-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <div id="app-content" hidden>
+    <header class="topbar">
+      <a class="brand" href="#awal" aria-label="Quran Digital, kembali ke Home" data-go-home>
+        <span class="brand-mark" aria-hidden="true"><span class="book-mark"><span></span><span></span></span></span>
+        <span class="brand-copy"><strong>Quran</strong><span>Digital</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Menu utama" data-i18n-aria="nav.label">
+        <button class="nav-tab is-active" type="button" data-view="quran" aria-current="page" data-i18n="nav.quran">Al-Qur’an</button>
+        <button class="nav-tab" type="button" data-view="mentor" data-i18n="nav.mentor">Mentor Murajaah</button>
+        <button class="nav-tab" type="button" data-view="radio" data-i18n="nav.radio">Quran Radio</button>
+      </nav>
+      <select class="language-select" data-language-select aria-label="Bahasa antarmuka" data-i18n-aria="language.label">
+        <option value="id">Indonesia</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Aktifkan tema gelap">
+        <span>Tema</span><span class="theme-name" data-theme-name>Terang</span><span class="theme-switch" aria-hidden="true"><span></span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="view is-visible" id="quran-view" aria-labelledby="quran-title">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow" data-i18n="quran.kicker">BACA DAN PAHAMI</p>
+            <h1 id="quran-title" data-i18n="nav.quran">Al-Qur’an</h1>
+            <p class="heading-note" data-i18n="quran.note">Pilih surat untuk mulai membaca ayat dan terjemahannya.</p>
+          </div>
+          <div class="heading-stamp" aria-hidden="true"><span>ٱقْرَأْ</span><small>IQRA’</small></div>
+        </div>
+
+        <div class="reader-layout">
+          <aside class="surah-panel" aria-label="Daftar surat">
+            <div class="panel-heading">
+              <div><p class="eyebrow" data-i18n="quran.choose">PILIH SURAT</p><h2 data-i18n="quran.surahList">Daftar surat</h2></div>
+              <span class="surah-count" id="surah-count">—</span>
+            </div>
+            <label class="search-box" for="surah-search">
+              <span aria-hidden="true">⌕</span>
+              <input id="surah-search" type="search" placeholder="Cari nama surat" data-i18n-placeholder="quran.search" autocomplete="off">
+            </label>
+            <p class="list-status" id="list-status" role="status">Memuat daftar surat…</p>
+            <div class="surah-list" id="surah-list"></div>
+          </aside>
+
+          <section class="reading-panel" aria-live="polite" aria-label="Isi surat" data-i18n-aria="quran.content">
+            <div class="reading-status" id="reading-status" role="status">Memuat ayat…</div>
+            <div id="surah-content" hidden>
+              <div class="surah-intro">
+                <div class="surah-number" id="detail-number">01</div>
+                <div class="surah-title-group">
+                  <p class="eyebrow" id="surah-meta">SURAT</p>
+                  <h2 id="surah-title"></h2>
+                  <p id="surah-subtitle"></p>
+                </div>
+                <div class="surah-arabic-name" id="surah-arabic-name" lang="ar" dir="rtl"></div>
+              </div>
+              <div class="verse-list" id="verse-list"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view mentor-view" id="mentor-view" aria-labelledby="mentor-title" hidden>
+        <div class="page-heading mentor-heading">
+          <div>
+            <p class="eyebrow" data-i18n="mentor.kicker">LATIHAN HAFALAN</p>
+            <h1 id="mentor-title" data-i18n="mentor.title">Mentor Murajaah</h1>
+            <p class="heading-note" data-i18n="mentor.note">Latih ingatan ayat dari surat yang sedang kamu pelajari.</p>
+          </div>
+          <div class="score-box" aria-live="polite"><span data-i18n="mentor.score">SKOR</span><strong id="score">0</strong><small data-i18n="mentor.points">poin</small></div>
+        </div>
+
+        <div class="mentor-layout">
+          <aside class="mentor-sidebar">
+            <div class="selected-surah-card">
+              <p class="eyebrow" data-i18n="mentor.selected">SURAT TERPILIH</p>
+              <div class="selected-surah-name" id="mentor-surah-name">Pilih surat</div>
+              <p id="mentor-surah-info" data-i18n="mentor.selectPrompt">Pilih surat di menu Al-Qur’an untuk mulai.</p>
+              <button class="text-link" type="button" data-go-quran data-i18n="mentor.chooseSurah">Pilih surat <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="mode-picker" role="group" aria-label="Pilih mode latihan" data-i18n-aria="mentor.mode">
+              <p class="eyebrow" data-i18n="mentor.mode">MODE LATIHAN</p>
+              <button class="mode-button is-selected" type="button" data-mode="guess" aria-pressed="true">
+                <span class="mode-icon" aria-hidden="true">#</span><span><strong data-i18n="mentor.guess">Tebak Ayat</strong><small data-i18n="mentor.guessHint">Ingat nomor ayat</small></span><span class="mode-arrow" aria-hidden="true">→</span>
+              </button>
+              <button class="mode-button" type="button" data-mode="continue" aria-pressed="false">
+                <span class="mode-icon mode-icon-arabic" aria-hidden="true">آ</span><span><strong data-i18n="mentor.continue">Sambung Ayat</strong><small data-i18n="mentor.continueHint">Ingat urutan ayat</small></span><span class="mode-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+            <div class="mentor-tip"><span class="tip-mark" aria-hidden="true">✳</span><p>Jawab dengan tenang. Setiap jawaban benar menambah <strong>10 poin</strong>.</p></div>
+          </aside>
+
+          <section class="quiz-panel" aria-label="Latihan murajaah" data-i18n-aria="mentor.title" aria-live="polite">
+            <div class="quiz-topline"><span class="round-label"><span data-i18n="mentor.round">RONDE</span> <strong id="round-number">1</strong></span><span class="quiz-mode-label" id="quiz-mode-label">TEBAK AYAT</span></div>
+            <div class="quiz-content" id="quiz-content">
+              <p class="question-prompt" id="question-prompt">Ayat nomor berapakah ini?</p>
+              <div class="question-verse" id="question-verse" lang="ar" dir="rtl"></div>
+              <p class="options-label" id="options-label">Pilih nomor ayat</p>
+              <div class="answer-options" id="answer-options"></div>
+              <p class="answer-feedback" id="answer-feedback" role="status" aria-live="assertive"></p>
+            </div>
+            <div class="quiz-empty" id="quiz-empty" hidden></div>
+            <div class="quiz-actions">
+              <button class="button button-secondary" id="restart-button" type="button" data-i18n="mentor.restart">Mulai Lagi</button>
+              <button class="button button-primary" id="next-button" type="button" data-i18n="mentor.next">Soal Berikutnya <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view radio-view" id="radio-view" aria-labelledby="radio-title" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow" data-i18n="radio.kicker">DENGARKAN AL-QUR’AN</p>
+            <h1 id="radio-title" data-i18n="nav.radio">Quran Radio</h1>
+            <p class="heading-note" data-i18n="radio.note">Pilih surat dan qari untuk memulai murattal.</p>
+          </div>
+          <span class="radio-live-label"><span></span> <span data-i18n="radio.player">PEMUTAR AUDIO</span></span>
+        </div>
+        <div class="radio-layout">
+          <section class="radio-player-panel" aria-label="Pemutar Quran Radio">
+            <div class="radio-track-art" aria-hidden="true">
+              <span class="book-mark book-mark-large"><span></span><span></span></span>
+              <span class="radio-equalizer radio-equalizer-large"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="radio-track-info">
+              <p class="eyebrow" data-i18n="radio.selected">SEDANG DIPILIH</p>
+              <h2 id="radio-track-title">Pilih surat</h2>
+              <p id="radio-track-reciter">Pilih qari untuk mendengarkan</p>
+            </div>
+            <audio id="radio-audio" controls preload="none" aria-label="Pemutar audio Quran Radio" data-i18n-aria="radio.player"></audio>
+            <div class="radio-skip-controls">
+              <button class="button button-secondary" type="button" id="radio-previous"><span aria-hidden="true">← </span><span data-i18n="radio.previous">Surat sebelumnya</span></button>
+              <button class="button button-secondary" type="button" id="radio-next"><span data-i18n="radio.next">Surat berikutnya</span><span aria-hidden="true"> →</span></button>
+            </div>
+            <p class="radio-status" id="radio-status" role="status">Pilih surat dan qari untuk memulai.</p>
+          </section>
+          <aside class="radio-settings">
+            <p class="eyebrow" data-i18n="radio.settings">ATUR SIARAN</p>
+            <h2 data-i18n="radio.options">Pilihan audio</h2>
+            <label for="radio-surah" data-i18n="radio.surah">Surat</label>
+            <select id="radio-surah" aria-label="Surat" data-i18n-aria="radio.surah"></select>
+            <label for="radio-reciter" data-i18n="radio.reciter">Qari</label>
+            <select id="radio-reciter" aria-label="Qari" data-i18n-aria="radio.reciter">
+              <option value="01">Abdullah Al-Juhany</option>
+              <option value="02">Abdul Muhsin Al-Qasim</option>
+              <option value="03">Abdurrahman As-Sudais</option>
+              <option value="04">Ibrahim Al-Dossari</option>
+              <option value="05">Misyari Rasyid Al-Afasi</option>
+              <option value="06">Yasser Al-Dosari</option>
+            </select>
+            <p class="radio-note" data-i18n="radio.source">Audio surat dimuat dari sumber yang disediakan API.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer"><span>Quran Digital</span><span data-i18n="footer.tagline">Belajar sedikit demi sedikit, setiap hari.</span></footer>
+    </div>
+  </div>
+</body>
+</html>
